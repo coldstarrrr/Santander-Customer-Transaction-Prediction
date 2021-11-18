@@ -17,12 +17,6 @@ def create_dump_directory():
     if not os.path.exists(path):
         os.makedirs(path)
 
-
-def remove_dump_directory():
-    if os.path.exists(path):
-        # removing the file using the os.remove() method
-        os.rmdir(path)
-
 def rf_objective(trial, X, y, test_X, test_id, k_fold):
     param_grid = {
         "n_estimators": trial.suggest_int("n_estimators", 50, 1000, step=100),
@@ -69,7 +63,6 @@ def train(k=5):
     rf_submission = pd.read_pickle(get_path("dump/rf_{}.pickle").format(study.best_trial.number))
     print("best trial is trial", study.best_trial.number)
     rf_submission.to_csv(get_path(r'output/rf_submission.csv'), index=False)
-    remove_dump_directory()
 
 
 if __name__ == "__main__":

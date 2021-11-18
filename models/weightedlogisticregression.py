@@ -19,12 +19,6 @@ def create_dump_directory():
         os.makedirs(path)
 
 
-def remove_dump_directory():
-    if os.path.exists(path):
-        # removing the file using the os.remove() method
-        os.rmdir(path)
-
-
 def logit_objective(trial, X, y, test_X, test_id, k_fold):
     print("Start trial {}".format(trial.number))
     weight = trial.suggest_int("class_weight", 1, 15)
@@ -66,7 +60,6 @@ def train(k=5):
 
     logit_submission = pd.read_pickle(get_path("dump/logit_{}.pickle").format(study.best_trial.number))
     logit_submission.to_csv(get_path(r'output/logit_submission.csv'), index=False)
-    remove_dump_directory()
 
 
 if __name__ == "__main__":
