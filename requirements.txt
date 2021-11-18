@@ -2,3 +2,4 @@ lightgbm
 tqdm
 optuna
 sklearn
+cuml
