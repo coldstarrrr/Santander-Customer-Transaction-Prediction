@@ -1,6 +1,7 @@
 dump/
 .idea/
 .git/
+data/
 
 __pycache__/
 *.py[cod]
